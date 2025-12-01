@@ -34,6 +34,42 @@ void ServicioCrow::run() {
 		return crow::response(201, res);
 	});
 
+	CROW_ROUTE(app, "/usuarios").methods(crow::HTTPMethod::GET)([this]() {
+		std::lock_guard<std::mutex> lock(this->mutex);
+
+		// Montar una lista con todos los usuarios del mapa:
+		crow::json::wvalue lista = crow::json::wvalue::list();
+		int i = 0;
+
+		for (const auto& [id, usuario] : this->usuarios) {
+			crow::json::wvalue item;
+			item["id"] = id;
+
+			// Comprobar si existe la clave nombre
+			if (usuario.has("nombre")) {
+				item["nombre"] = usuario["nombre"].s();
+			}
+			else {
+				item["nombre"] = "";
+			}
+
+			if (usuario.has("email")) {
+				item["email"] = usuario["email"].s();
+			}
+			else {
+				item["email"] = "";
+			}
+
+			// Guardar el item en la lista:
+			lista[i++] = std::move(item); // OJO, lo movemos no copiamos.
+		}
+
+		crow::json::wvalue res;
+		res["usuarios"] = std::move(lista);
+		return crow::response(res);
+
+		});
+
 	CROW_ROUTE(app, "/usuarios/<int>").methods(crow::HTTPMethod::GET)([this](int id) {
 
 		std::lock_guard<std::mutex> lock(this->mutex);
