@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <nlohmann/json.hpp>
+#include "Conversor.h"
 
 void testJson() {
     nlohmann::json doc;
@@ -12,9 +13,14 @@ void testJson() {
 
 }
 
+void testPedidoJson() {
+    Conversor::conversorCSVToJson("..\\..\\..\\practicas\\ficheros\\pedidos_final.csv",
+        "..\\..\\..\\practicas\\ficheros\\out\\pedidos.json");
+}
+
 int main()
 {
-    testJson();
-
+    //testJson();
+    testPedidoJson();
     return 0;
 }
