@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36518.9 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "servidorHTTP", "servidorHTTP\servidorHTTP.vcxproj", "{3CC91185-A5AC-4B1B-8A76-05ED222FFF84}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServidorREST", "ServidorREST\ServidorREST.vcxproj", "{A11FF485-F826-4A3A-ADFF-3860DCDB9457}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{3CC91185-A5AC-4B1B-8A76-05ED222FFF84}.Release|x64.Build.0 = Release|x64
 		{3CC91185-A5AC-4B1B-8A76-05ED222FFF84}.Release|x86.ActiveCfg = Release|Win32
 		{3CC91185-A5AC-4B1B-8A76-05ED222FFF84}.Release|x86.Build.0 = Release|Win32
+		{A11FF485-F826-4A3A-ADFF-3860DCDB9457}.Debug|x64.ActiveCfg = Debug|x64
+		{A11FF485-F826-4A3A-ADFF-3860DCDB9457}.Debug|x64.Build.0 = Debug|x64
+		{A11FF485-F826-4A3A-ADFF-3860DCDB9457}.Debug|x86.ActiveCfg = Debug|Win32
+		{A11FF485-F826-4A3A-ADFF-3860DCDB9457}.Debug|x86.Build.0 = Debug|Win32
+		{A11FF485-F826-4A3A-ADFF-3860DCDB9457}.Release|x64.ActiveCfg = Release|x64
+		{A11FF485-F826-4A3A-ADFF-3860DCDB9457}.Release|x64.Build.0 = Release|x64
+		{A11FF485-F826-4A3A-ADFF-3860DCDB9457}.Release|x86.ActiveCfg = Release|Win32
+		{A11FF485-F826-4A3A-ADFF-3860DCDB9457}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

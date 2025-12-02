@@ -27,6 +27,7 @@ void ServidorHTTP::procesarPeticion(tcp::socket& socket) {
 	beast::flat_buffer buffer;
 	http::request<http::string_body> request;
 	std::string mensaje = "";
+	std::string metodo;
 
 	try {
 		// Leer la peticion:
@@ -34,7 +35,9 @@ void ServidorHTTP::procesarPeticion(tcp::socket& socket) {
 
 		// Extraer el mensaje y la querystring
 		std::string target = request.target();
-		std::cout << "Peticion: " << target << std::endl;
+		metodo = request.method_string();
+			
+		std::cout << "Peticion: " << target << " metodo: " << metodo <<  std::endl;
 
 		auto pos = target.find("?msg=");
 
