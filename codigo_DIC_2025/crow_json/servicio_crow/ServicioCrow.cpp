@@ -29,7 +29,7 @@ void ServicioCrow::run() {
 		// Montar las respuesta para el cliente:
 		crow::json::wvalue res;
 		res["id"] = id;
-		res["mensaje"] = "usuario";
+		res["mensaje"] = "usuario creado";
 
 		return crow::response(201, res);
 	});
@@ -93,6 +93,21 @@ void ServicioCrow::run() {
 
 		return crow::response(res); // Si no ponemos código, se entiende 200
 
+		});
+
+
+	CROW_ROUTE(app, "/usuarios/<int>").methods(crow::HTTPMethod::Delete)([this](int id) {
+
+		std::lock_guard<std::mutex> lock(this->mutex);
+
+		if (usuarios.erase(id) == 0) {
+			// Si no existe -> recurso no disponible
+			return crow::response(404, "Usuario a borrar: " + std::to_string(id) + " no existe");
+		}
+
+		crow::response res;
+		res.code = 204; // Operación realizada con exito pero no hay contenido
+		return res;
 		});
 
 	// Poner en marcha el servicio:
