@@ -3,8 +3,17 @@
 
 #include <iostream>
 
+#include "ServidorHTTP.h"
+
+void testServidorHTTP() {
+    boost::asio::io_context ioc;
+    ServidorHTTP server(ioc, 8080);
+    server.run();
+}
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    testServidorHTTP();
+    return 0;
 }
 
