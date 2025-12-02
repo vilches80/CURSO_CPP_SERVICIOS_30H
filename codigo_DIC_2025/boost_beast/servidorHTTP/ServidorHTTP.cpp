@@ -1,6 +1,4 @@
-#include "ServidorREST.h"
-#include "ServidorREST.h"
-#include "ServidorREST.h"
+
 #include "ServidorHTTP.h"
 
 ServidorHTTP::ServidorHTTP(net::io_context& ioc, unsigned int port):ioc(ioc), acceptor(ioc, tcp::endpoint(tcp::v4(), port)) {}
@@ -62,20 +60,6 @@ void ServidorHTTP::procesarPeticion(tcp::socket& socket) {
 	}
 }
 
-std::string ServidorREST::peticionGET()
-{
-	return std::string();
-}
-
-std::string ServidorREST::peticionPOST(const std::string&)
-{
-	return std::string();
-}
-
-std::string ServidorREST::peticionDELETE(int)
-{
-	return std::string();
-}
 
 ServidorHTTP::~ServidorHTTP() {
 
