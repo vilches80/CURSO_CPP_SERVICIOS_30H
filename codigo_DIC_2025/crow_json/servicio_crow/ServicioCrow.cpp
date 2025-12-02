@@ -140,6 +140,14 @@ void ServicioCrow::run() {
 		return res;
 		});
 
+
+	CROW_ROUTE(app, "/info")
+		([](const crow::request& req) {
+		std::string agente = req.get_header_value("User-Agent");
+		std::string param = req.url_params.get("id"); // /info?id=123
+		return crow::response("Agente: " + agente + ", ID: " + param);
+			});
+
 	// Poner en marcha el servicio: multithreading con 4 hilos y log
 	//app.port(PORT).multithreaded().concurrency(4).loglevel(crow::LogLevel::Debug).run();
 
