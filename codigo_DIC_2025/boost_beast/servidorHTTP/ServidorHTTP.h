@@ -19,6 +19,8 @@ class ServidorHTTP
 	net::io_context& ioc;
 	tcp::acceptor acceptor;
 
+	void procesarPeticion(tcp::socket&);
+
 public:
 	ServidorHTTP(net::io_context&, unsigned int port);
 	void run();
