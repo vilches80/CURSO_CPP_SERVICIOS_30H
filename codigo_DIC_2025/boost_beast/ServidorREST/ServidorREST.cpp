@@ -42,17 +42,22 @@ void ServidorREST::procesarPeticion(tcp::socket& socket) {
 
 		std::cout << "Peticion: " << target << " metodo: " << metodo << std::endl;
 
-		auto pos = target.find("?msg=");
-
-		if (pos != std::string::npos) {
-			mensaje = target.substr(pos + 5);
-		}
 
 		// Respuesta al cliente:
 		http::response<http::string_body> response{ http::status::ok, request.version() };
-		response.set(http::field::server, "Beast/1.0");
-		response.set(http::field::content_type, "text/plain");
+		response.set(http::field::server, "REST API/1.0");
+		response.set(http::field::content_type, "application/json");
 		response.body() = "Respuesta del servidor: " + mensaje;
+
+		// Conexion persistente:
+		response.keep_alive(request.keep_alive());
+
+		// Programar el enrutamiento:
+
+
+
+		// Calcular el tamaño de la respuesta: content_length
+		response.prepare_payload();
 
 		// Escribir respuesta:
 		http::write(socket, response);
@@ -65,6 +70,7 @@ void ServidorREST::procesarPeticion(tcp::socket& socket) {
 
 std::string ServidorREST::peticionGET()
 {
+	// Devuelve todos los nombres de la colección
 	return std::string();
 }
 
@@ -73,7 +79,7 @@ std::string ServidorREST::peticionPOST(const std::string&)
 	return std::string();
 }
 
-std::string ServidorREST::peticionDELETE(int)
+std::string ServidorREST::peticionDELETE(int id)
 {
 	return std::string();
 }
