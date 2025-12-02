@@ -140,8 +140,11 @@ void ServicioCrow::run() {
 		return res;
 		});
 
-	// Poner en marcha el servicio:
-	app.port(PORT).multithreaded().concurrency(4).loglevel(crow::LogLevel::Debug).run();
+	// Poner en marcha el servicio: multithreading con 4 hilos y log
+	//app.port(PORT).multithreaded().concurrency(4).loglevel(crow::LogLevel::Debug).run();
+
+	// Poner en marcha el servicio: multithreading con el numero de hilos del procesados y sin log:
+	app.port(PORT).multithreaded().concurrency(std::thread::hardware_concurrency()).run();
 }
 
 ServicioCrow::~ServicioCrow()
