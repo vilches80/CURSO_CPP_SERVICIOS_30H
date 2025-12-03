@@ -20,7 +20,7 @@ std::optional<Empleado> EmpleadoCache::getEmpleado(int id)
 	std::string key = "empleado" + std::to_string(id);
 
 	// Buscar la clave:
-	redisReply* reply = (redisReply*)redisCommand(this->contexto, "GET %s", key);
+	redisReply* reply = (redisReply*)redisCommand(this->contexto, "GET %s", key.c_str());
 
 	// REcuperamos el contenido de la clave:
 	if (reply->type == REDIS_REPLY_STRING) {
