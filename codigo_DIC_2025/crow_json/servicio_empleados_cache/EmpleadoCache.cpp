@@ -32,9 +32,11 @@ std::optional<Empleado> EmpleadoCache::getEmpleado(int id)
 		// Para convertirlo a objeto:
 		Empleado emp = j.get<Empleado>();
 
+		freeReplyObject(reply);
 		return emp;
 	}
 
+	freeReplyObject(reply);
 	return std::nullopt;
 }
 
