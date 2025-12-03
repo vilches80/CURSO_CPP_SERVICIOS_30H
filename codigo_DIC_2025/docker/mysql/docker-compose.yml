@@ -1,0 +1,7 @@
+# restart: always, si el contenedor se detiene docker lo vuelve a levantar
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_dev
+    restart: always    
+    
