@@ -124,6 +124,32 @@ void EmpleadoCROW::run() {
 		}
 		});
 
+
+	CROW_ROUTE(app, "/empleados/<int>").methods(crow::HTTPMethod::Delete)([this](int id) {
+
+		try {
+			// Verificar que existe:
+			auto empleado = this->repositorio.recuperarEmpleado(id);
+
+			if (!empleado.has_value()) {
+				return crow::response(404, "Empleado con id: " + std::to_string(id) + " no existe");
+			}
+
+			// Eliminar de la BD:
+			this->repositorio.eliminar(id);
+
+			crow::json::wvalue resul;
+			resul["resultado"] = "Se ha eliminado el empleado correctamente";
+			return crow::response(200, resul.dump());
+
+		}
+		catch (const std::exception& e) {
+			return crow::response(500, std::string("Error en el servicio: ") + e.what());
+		}
+
+		});	
+
+
 	app.multithreaded().concurrency(std::thread::hardware_concurrency()).port(8000).run();
 }
 
