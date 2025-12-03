@@ -1,12 +1,23 @@
 #include "EmpleadoRepositorio.h"
 
-EmpleadoRepositorio::EmpleadoRepositorio(soci::session&)
+EmpleadoRepositorio::EmpleadoRepositorio(soci::session&sql):sql(sql)
 {
 }
 
-std::optional<Empleado> EmpleadoRepositorio::read(int)
+std::optional<Empleado> EmpleadoRepositorio::read(int id)
 {
-	return std::optional<Empleado>();
+	Empleado emp;
+	soci::indicator ind;
+
+	sql << "select id, nombre, cargo from empleado where id = :id",
+		soci::use(id), soci::into(emp.id, ind), soci::into(emp.nombre), soci::into(emp.cargo);
+
+	if (ind == soci::i_null) {
+		// No ha encontrado el empleado:
+		return std::nullopt;
+	}
+
+	return emp;
 }
 
 bool EmpleadoRepositorio::create(const Empleado&)
