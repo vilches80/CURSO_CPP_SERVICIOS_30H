@@ -124,12 +124,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EmpleadoCache.cpp" />
     <ClCompile Include="EmpleadoCROW.cpp" />
     <ClCompile Include="EmpleadoRepositorio.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Empleado.h" />
+    <ClInclude Include="EmpleadoCache.h" />
     <ClInclude Include="EmpleadoCROW.h" />
     <ClInclude Include="EmpleadoRepositorio.h" />
   </ItemGroup>
