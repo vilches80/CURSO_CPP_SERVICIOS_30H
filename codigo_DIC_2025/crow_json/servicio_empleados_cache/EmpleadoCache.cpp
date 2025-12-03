@@ -27,7 +27,7 @@ std::optional<Empleado> EmpleadoCache::getEmpleado(int id)
 
 		// Devolver el empleado
 		std::string cadJson = reply->str;
-		std::cout << "getEmpleado: " << cadJson << std::endl;
+		//std::cout << "getEmpleado: " << cadJson << std::endl;
 
 		json j = json::parse(cadJson);
 	
@@ -49,7 +49,7 @@ void EmpleadoCache::saveEmpleado(Empleado emp)
 
 	json j = emp;
 	std::string strEmp = j.dump();
-	std::cout << "saveEmpleado: " << emp.to_string() << " " << strEmp << std::endl;
+	//std::cout << "saveEmpleado: " << emp.to_string() << " " << strEmp << std::endl;
 
 	// Guardamos el objeto empleado como una cadena en la clave:
 	redisReply* reply = (redisReply*)redisCommand(this->contexto, "SET %s %s", key.c_str(), strEmp.c_str());

@@ -6,6 +6,7 @@
 #include <soci/mysql/soci-mysql.h>
 
 #include "EmpleadoRepositorio.h"
+#include "EmpleadoService.h"
 #include "EmpleadoCROW.h"
 #include "EmpleadoCache.h"
 
@@ -16,8 +17,13 @@ void arrancarServicio() {
     // Crear un repositorio:
     EmpleadoRepository repo(sql);
 
+    // Crear la cache:
+    EmpleadoCache cache;
+
+    EmpleadoService service(cache, repo);
+
     // Crear el servicio y ponerlo en marcha:
-    EmpleadoCROW servicio(repo);
+    EmpleadoCROW servicio(service);
     servicio.run();
 }
 
@@ -35,14 +41,13 @@ void testEmpleadoCache() {
     else {
         std::cout << "No se ha podido recuperar" << std::endl;
     }
-
 }
 
 
 int main()
 {
-   // arrancarServicio();
-    testEmpleadoCache();
+    arrancarServicio();
+    //testEmpleadoCache();
     return 0;
 }
 

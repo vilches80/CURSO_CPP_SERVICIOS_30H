@@ -6,14 +6,14 @@
 
 using json = nlohmann::json;
 
-EmpleadoCROW::EmpleadoCROW(EmpleadoRepository& repo):repositorio(repo)
+EmpleadoCROW::EmpleadoCROW(EmpleadoService& service):service(service)
 {
 }
 
 void EmpleadoCROW::run() {
 	crow::SimpleApp app;
 
-
+	/*
 	CROW_ROUTE(app, "/empleados/<int>").methods(crow::HTTPMethod::PUT)([this](const crow::request& req, int id) {
 
 		// Recuperamos el objeto json con load para hacer la validacion de la sintaxis:
@@ -89,12 +89,12 @@ void EmpleadoCROW::run() {
 			return crow::response(500, std::string("Error en el servicio: ") + e.what());
 		}
 
-		});
+		});*/
 
 	CROW_ROUTE(app, "/empleados/<int>").methods(crow::HTTPMethod::GET)([this](int id) {
 		try {
 			// Verificar que existe:
-			auto empleado = this->repositorio.recuperarEmpleado(id);
+			auto empleado = this->service.read(id);
 
 			if (!empleado.has_value()) {
 				return crow::response(404, "Empleado con id: " + std::to_string(id) + " no existe");
@@ -111,6 +111,7 @@ void EmpleadoCROW::run() {
 
 		});
 
+	/*
 	CROW_ROUTE(app, "/empleados").methods(crow::HTTPMethod::GET)([this]() {
 
 		try {
@@ -149,7 +150,7 @@ void EmpleadoCROW::run() {
 
 		});	
 
-
+*/
 	app.multithreaded().concurrency(std::thread::hardware_concurrency()).port(8000).run();
 }
 

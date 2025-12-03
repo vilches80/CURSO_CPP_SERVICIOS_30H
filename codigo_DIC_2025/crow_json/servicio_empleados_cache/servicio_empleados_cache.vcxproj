@@ -127,6 +127,7 @@
     <ClCompile Include="EmpleadoCache.cpp" />
     <ClCompile Include="EmpleadoCROW.cpp" />
     <ClCompile Include="EmpleadoRepositorio.cpp" />
+    <ClCompile Include="EmpleadoService.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +135,7 @@
     <ClInclude Include="EmpleadoCache.h" />
     <ClInclude Include="EmpleadoCROW.h" />
     <ClInclude Include="EmpleadoRepositorio.h" />
+    <ClInclude Include="EmpleadoService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
