@@ -20,18 +20,23 @@
 
 void testRepositorio() {
     // Crear la sesion de soci:
-    soci::session sql(soci::mysql, "db=empresa3 user=antonio password=antonio host=127.0.0.1 port=3307");
+    try {
+        soci::session sql(soci::mysql, "db=empresa3 user=antonio password=antonio host=127.0.0.1 port=3307");
 
-    EmpleadoRepositorio repo(sql);
+        EmpleadoRepositorio repo(sql);
 
-    // Recuperar un empleado con el id:
-    auto resul1 = repo.read(1);
+        // Recuperar un empleado con el id:
+        auto resul1 = repo.read(100);
 
-    if (resul1) {
-        std::cout << resul1->id << " " << resul1->nombre << " " << resul1->cargo << std::endl;
+        if (resul1) {
+            std::cout << resul1->id << " " << resul1->nombre << " " << resul1->cargo << std::endl;
+        }
+        else {
+            std::cout << "No existe el empleado" << std::endl;
+        }
     }
-    else {
-        std::cout << "No existe el empleado" << std::endl;
+    catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
     }
 }
 
@@ -157,7 +162,8 @@ void testInsertar() {
 int main()
 {
 	//testMySQL();
-    testRecuperarConsulta();
+    //testRecuperarConsulta();
     //testInsertar();
+    testRepositorio();
 }
 

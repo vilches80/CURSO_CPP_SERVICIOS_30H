@@ -6,18 +6,23 @@ EmpleadoRepositorio::EmpleadoRepositorio(soci::session&sql):sql(sql)
 
 std::optional<Empleado> EmpleadoRepositorio::read(int id)
 {
-	Empleado emp;
-	soci::indicator ind;
+	try {
+		Empleado emp;
+		soci::indicator ind;
 
-	sql << "select id, nombre, cargo from empleado where id = :id",
-		soci::use(id), soci::into(emp.id, ind), soci::into(emp.nombre), soci::into(emp.cargo);
+		sql << "select id, nombre, cargo from empleados where id = :id",
+			soci::use(id), soci::into(emp.id, ind), soci::into(emp.nombre), soci::into(emp.cargo);
 
-	if (ind == soci::i_null) {
-		// No ha encontrado el empleado:
-		return std::nullopt;
+		if (ind == soci::i_null) {
+			// No ha encontrado el empleado:
+			return std::nullopt;
+		}
+
+		return emp;
 	}
-
-	return emp;
+	catch (const std::exception& e) {
+		throw e;
+	}
 }
 
 bool EmpleadoRepositorio::create(const Empleado& emp)
