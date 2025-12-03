@@ -26,7 +26,7 @@ int main()
     std::cout << "SET respuesta : " << reply->str << std::endl;
     freeReplyObject(reply);
 
-    reply = (redisReply*)redisCommand(contexto, "GET apellidos");
+    reply = (redisReply*)redisCommand(contexto, "GET nombre");
     std::cout << "SET respuesta : " << reply->str << std::endl;
     freeReplyObject(reply);
 
