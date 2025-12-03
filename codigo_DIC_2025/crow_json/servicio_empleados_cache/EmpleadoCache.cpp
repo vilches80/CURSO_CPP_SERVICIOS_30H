@@ -52,7 +52,7 @@ void EmpleadoCache::saveEmpleado(Empleado emp)
 	std::cout << "saveEmpleado: " << emp.to_string() << " " << strEmp << std::endl;
 
 	// Guardamos el objeto empleado como una cadena en la clave:
-	redisReply* reply = (redisReply*)redisCommand(this->contexto, "SET %s %s", key, strEmp);
+	redisReply* reply = (redisReply*)redisCommand(this->contexto, "SET %s %s", key.c_str(), strEmp.c_str());
 	freeReplyObject(reply);
 }
 
