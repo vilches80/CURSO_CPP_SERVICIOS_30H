@@ -26,7 +26,7 @@ void testRepositorio() {
         EmpleadoRepositorio repo(sql);
 
         // Recuperar un empleado con el id:
-        auto resul1 = repo.read(100);
+        auto resul1 = repo.read(1);
 
         if (resul1) {
             std::cout << resul1->id << " " << resul1->nombre << " " << resul1->cargo << std::endl;
@@ -34,6 +34,9 @@ void testRepositorio() {
         else {
             std::cout << "No existe el empleado" << std::endl;
         }
+
+        Empleado e = { 11, "Martin", "Representante de ventas" };
+        repo.create(e);
     }
     catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
