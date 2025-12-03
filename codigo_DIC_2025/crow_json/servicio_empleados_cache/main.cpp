@@ -7,9 +7,9 @@
 
 #include "EmpleadoRepositorio.h"
 #include "EmpleadoCROW.h"
+#include "EmpleadoCache.h"
 
-int main()
-{
+void arrancarServicio() {
     // Crear la session de soci:
     soci::session sql(soci::mysql, "db=empresa3 user=antonio password=antonio host=127.0.0.1 port=3307");
 
@@ -19,6 +19,30 @@ int main()
     // Crear el servicio y ponerlo en marcha:
     EmpleadoCROW servicio(repo);
     servicio.run();
+}
 
+void testEmpleadoCache() {
+    EmpleadoCache cache;
+    Empleado emp = { 1, "Juan", "Gerente" };
+
+    std::cout << emp.to_string() << std::endl;
+    cache.saveEmpleado(emp);
+
+    auto emp2 = cache.getEmpleado(1);
+    if (emp2.has_value()) {
+        std::cout << emp2->to_string() << std::endl;
+    }
+    else {
+        std::cout << "No se ha podido recuperar" << std::endl;
+    }
+
+}
+
+
+int main()
+{
+   // arrancarServicio();
+    testEmpleadoCache();
+    return 0;
 }
 
