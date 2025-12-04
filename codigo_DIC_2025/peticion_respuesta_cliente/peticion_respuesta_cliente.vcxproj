@@ -126,7 +126,7 @@
     <ClCompile Include="cliente.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\peticon_respuesta_server\Persona.h" />
+    <ClInclude Include="Persona.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
