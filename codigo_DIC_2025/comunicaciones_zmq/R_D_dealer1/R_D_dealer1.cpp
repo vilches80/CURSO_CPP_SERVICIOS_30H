@@ -16,7 +16,7 @@ int main()
     dealer.set(zmq::sockopt::routing_id, "cliente_1");
 
     // conectar al puerto:
-    dealer.connect("tcp:://localhost:5555");
+    dealer.connect("tcp:://localhost:5559");
 
     std::cout << "Conectado al puerto: 5555" << std::endl;
     std::string mensaje = "soy el cliente 1";

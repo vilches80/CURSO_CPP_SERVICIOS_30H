@@ -13,7 +13,7 @@ int main()
     zmq::socket_t router(contexto, zmq::socket_type::router);
 
     // Bind al puerto:
-    router.bind("tcp:://*:5555");
+    router.bind("tcp:://*:5559");
 
     zmq::message_t parte;
     std::vector<zmq::message_t> partes;
