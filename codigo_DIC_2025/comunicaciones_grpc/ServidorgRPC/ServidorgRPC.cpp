@@ -2,18 +2,51 @@
 //
 
 #include <iostream>
+#include <memory>
+#include <grpcpp/grpcpp.h>
+#include "saludo.grpc.pb.h"
+
+using grpc::Server;
+using grpc::ServerBuilder;
+using grpc::ServerContext;
+using grpc::Status;
+using saludo::Saludo;
+using saludo::Solicitud;
+using saludo::Respuesta;
+
+
+// Crear una clase que herede de Saludo::Service
+class SaludoServiceImpl final : public Saludo::Service {
+
+	Status DiHola(ServerContext* context, const Solicitud* request, Respuesta* reply) override {
+		std::string nombre = request->nombre();
+		reply->set_mensaje("Hola " + nombre);
+		return Status::OK;
+	}
+};
+
+void ejecutarServidor() {
+	std::string direccion = "0.0.0.0:50051";
+	SaludoServiceImpl servicio;
+
+	ServerBuilder builder;
+
+	// Indicar la direccion y el puerto donde se despliega el servidor
+	builder.AddListeningPort(direccion, grpc::InsecureServerCredentials());
+
+	// Registrar el servicio:
+	builder.RegisterService(&servicio);
+
+	// Poner en marcha el servidor:
+	std::unique_ptr<Server> server(builder.BuildAndStart());
+
+	std::cout << "Servidor escuchando en " << direccion << std::endl;
+	server->Wait();
+}
+
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	ejecutarServidor();
+	return 0;
 }
-
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
