@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{bb157022-9a22-416b-b4ee-cab1cb67e90e}</ProjectGuid>
-    <RootNamespace>servicioempleadoscache</RootNamespace>
+    <ProjectGuid>{383ed16c-e1f0-4763-affd-06381aad3b1e}</ProjectGuid>
+    <RootNamespace>peticionrespuestacliente</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -102,7 +102,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,19 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EmpleadoCache.cpp" />
-    <ClCompile Include="EmpleadoCROW.cpp" />
-    <ClCompile Include="EmpleadoRepositorio.cpp" />
-    <ClCompile Include="EmpleadoService.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="cliente.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Empleado.h" />
-    <ClInclude Include="EmpleadoCache.h" />
-    <ClInclude Include="EmpleadoCROW.h" />
-    <ClInclude Include="EmpleadoRepositorio.h" />
-    <ClInclude Include="EmpleadoService.h" />
-    <ClInclude Include="memcache.h" />
+    <ClInclude Include="..\peticon_respuesta_server\Persona.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
