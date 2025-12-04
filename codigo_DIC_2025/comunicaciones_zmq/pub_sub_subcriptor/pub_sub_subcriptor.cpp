@@ -18,7 +18,7 @@ int main()
     socket.connect("tcp://localhost:5556");
 
     // Para filtrar por un topic:
-    socket.set(zmq::sockopt::subscribe, "viento");
+    socket.set(zmq::sockopt::subscribe, "temperatura");
 
     while (true) {
         zmq::message_t mensaje;
