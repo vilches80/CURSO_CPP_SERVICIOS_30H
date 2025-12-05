@@ -8,6 +8,9 @@ private:
 
 public:
 	Vector(int = 10);
+	// Constructor copia:
+	Vector(const Vector&) = delete;
+	Vector& operator=(const Vector&) = delete;
 	bool add(int);
 	void imprimir();
 	~Vector();
