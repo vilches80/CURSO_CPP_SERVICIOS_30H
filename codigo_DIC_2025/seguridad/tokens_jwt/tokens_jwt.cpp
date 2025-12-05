@@ -10,6 +10,10 @@
 
 using json = nlohmann::json;
 
+#define USER "admin"
+#define PWD "1234"
+
+
 int main()
 {
     crow::SimpleApp app;
@@ -20,7 +24,28 @@ int main()
 
             // Obtener las credenciales de la request:
             auto j = json::parse(request.body);
+            if (!j.contains("user") || !j.contains("pwd")) {
+                return crow::response(400, std::string("Json incorrecto: se esperaban campos");
+            }
 
+            // Comprobar las credenciales: (ir al Repositorio)
+            if (USER == j.at("user") && PWD == j.at("pwd")) {
+                // Esta correcto, creamos el token:
+                auto token = jwt::create().
+                    set_issuer("curso C++").
+                    set_payload_claim("usuario", jwt::claim(USER)).
+                    set_expires_at(std::chrono::system_clock::now() + std::chrono::minutes{ 30 }).
+                    sign(jwt::algorithm::hs256{ PWD });
+
+                // Devolver el token al cliente:
+                crow::json::wvalue respuesta;
+                respuesta["token"] = token;
+                return crow::response(respuesta);
+
+            }
+            else {
+                return crow::response(400, "Credenciales incorrectas");
+            }
 
         }
         catch (const std::exception& e) {
