@@ -25,7 +25,7 @@ int main()
             // Obtener las credenciales de la request:
             auto j = json::parse(request.body);
             if (!j.contains("user") || !j.contains("pwd")) {
-                return crow::response(400, std::string("Json incorrecto: se esperaban campos");
+                return crow::response(400, std::string("Json incorrecto: se esperaban campos"));
             }
 
             // Comprobar las credenciales: (ir al Repositorio)
@@ -33,7 +33,7 @@ int main()
                 // Esta correcto, creamos el token:
                 auto token = jwt::create().
                     set_issuer("curso C++").
-                    set_payload_claim("usuario", jwt::claim(USER)).
+                    set_payload_claim("usuario", jwt::claim(std::string(USER))).
                     set_expires_at(std::chrono::system_clock::now() + std::chrono::minutes{ 30 }).
                     sign(jwt::algorithm::hs256{ PWD });
 
