@@ -2,15 +2,37 @@
 
 #include <iostream>
 #include <algorithm>
-#include <iterator>
-
 #include "Vector.h"
+
 
 Vector::Vector(int n)
 {
 	this->n = n;
 	this->ocupacion = 0;
 	this->numeros = new int[n];
+}
+
+Vector::Vector(const Vector& v)
+{
+	this->n = v.n;
+	this->ocupacion = v.ocupacion;
+
+	this->numeros = new int[v.n];	
+	std::copy(v.numeros, v.numeros + ocupacion, this->numeros);
+}
+
+Vector& Vector::operator=(const Vector& v)
+{
+	// TODO: Insertar una instrucción "return" aquí
+	this->n = v.n;
+	this->ocupacion = v.ocupacion;
+
+	delete[] this->numeros;
+
+	this->numeros = new int[v.n];
+	std::copy(v.numeros, v.numeros + ocupacion, this->numeros);
+
+	return *this;
 }
 
 bool Vector::add(int num)
