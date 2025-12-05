@@ -36,7 +36,7 @@ private:
 		auto self = shared_from_this();
 
 		// Hacemos una lectura sincrona:
-		http::async_read(socket, buffer, request, [self](beast::error_code ec, std::size_t) {
+		http::async_read(socket_, buffer, request, [self](beast::error_code ec, std::size_t) {
 			if (!ec) {
 				self->handler_request();
 			}
