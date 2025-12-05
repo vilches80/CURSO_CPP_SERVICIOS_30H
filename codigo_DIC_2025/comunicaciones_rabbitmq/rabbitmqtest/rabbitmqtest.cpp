@@ -111,7 +111,7 @@ int consumidor() {
 }
 
 int main(){
-    productor();
+    //productor();
     consumidor();
     return 0;
 }
