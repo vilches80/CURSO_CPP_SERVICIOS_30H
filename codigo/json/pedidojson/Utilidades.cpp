@@ -1,5 +1,4 @@
 #include <sstream>
-
 #include "utilidades.h"
 
 void Utilidades::split(const std::string& s, char delim, std::vector<std::string>& elems) {
