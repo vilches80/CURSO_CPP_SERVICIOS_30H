@@ -8,8 +8,8 @@
 # DATOS DE CONEXION:
 # HOST: localhost
 # PUERTO: 3307
-# USER: antonio
-# PASS: antonio
+# USER: daniel
+# PASS: 1234
 # BD: empresa3
 
 services:
@@ -18,10 +18,10 @@ services:
     container_name : mysql_dev
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: antonio
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: empresa3
-      MYSQL_USER: antonio
-      MYSQL_PASSWORD: antonio
+      MYSQL_USER: daniel
+      MYSQL_PASSWORD: 1234
     ports:
       - "3307:3306"
     volumes:
