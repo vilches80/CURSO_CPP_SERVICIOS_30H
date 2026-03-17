@@ -124,7 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Pedido.cpp" />
-    <ClCompile Include="pedidojson.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Utilidades.cpp" />
   </ItemGroup>
   <ItemGroup>
