@@ -21,6 +21,32 @@ Pedido::Pedido(std::string linea, char sep)
 	this->importe = std::stof(campos.at(4));
 	this->pais = campos.at(5);
 }
+
+nlohmann::json Pedido::to_json() const
+{
+	return nlohmann::json{ {"idpedido", this->idpedido},
+							{"cliente", this->cliente},
+							{"empresa", this->empresa},
+							{"empleado", this->empleado},
+							{"importe", this->importe},
+							{"pais", this->pais} };
+}
+
+Pedido Pedido::from_json(const nlohmann::json& j)
+{
+	Pedido p;
+
+	p.idpedido = j.at("idpedido").get<std::string>();
+	p.cliente = j.at("cliente").get<std::string>();
+	p.empresa = j.at("empresa").get<std::string>();
+	p.empleado = j.at("empleado").get<std::string>();
+	p.importe = j.at("importe").get<float>();
+	p.pais = j.at("pais").get<std::string>();
+
+	return p;
+}
+
+
 Pedido::~Pedido()
 {
 }

@@ -11,8 +11,17 @@ void testLibreria() {
 	doc["curso"] = "Microservicios en C++";
 	doc["horas"] = 25;
 	doc["tecnologias"] = { "xml", "json", "rest", "soap" };
-	std::cout << "Json: " << doc.dump(4) << std::endl;
+	std::cout << "Json: " << std::endl << doc.dump(4) << std::endl;
 	std::cout << "curso: " << doc["curso"] << std::endl;
+
+	/////////////////////////////
+
+	std::istringstream ss(R"({"nombre":"Ana","edad":28,"intereses":["programacion","musica","senderismo"]})");
+	nlohmann::json doc2;
+	// Se convierte a json:
+	ss >> doc2;
+	std::cout << "nombre: " << doc2["nombre"] << std::endl << std::endl;
+	std::cout << doc2.dump(4) << std::endl;
 }
 
 void testPedidos() {

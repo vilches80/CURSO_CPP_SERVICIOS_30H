@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <nlohmann/json.hpp>
 
 class Pedido
 {
@@ -14,6 +15,8 @@ class Pedido
 public:
 	Pedido();
 	Pedido(std::string, char = ';');
+	nlohmann::json to_json() const;
+	static Pedido from_json(const nlohmann::json& j);
 	~Pedido();
 };
 
