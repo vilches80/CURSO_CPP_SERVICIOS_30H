@@ -53,6 +53,14 @@ void servidorWS() {
         }
 
     }
+    catch (beast::system_error const& err){
+        if (err.code() == websocket::error::closed) {
+            std::cout << "Cerrando comunicacion con el cliente" << std::endl;
+        }
+        else {
+            std::cerr << "ERROR: " << "Error en WebSocket << " << err.code().message() << std::endl;
+        }
+    }
     catch (const std::exception& ex) {
         std::cerr << "ERROR: " << ex.what() << std::endl;
     }
