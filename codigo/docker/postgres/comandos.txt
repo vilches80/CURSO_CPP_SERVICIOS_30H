@@ -1,12 +1,15 @@
-copiar el backup al contenedor:
-docker cp empresa3_pg.sql nombre_contenedor:/tmp/empresa3_pg.sql
-
 # Crear el contenedor:
 docker-compose up -d
 
-
-# comcprobar si esta arrancado:
+# comprobar si esta arrancado:
 docker ps
+
+
+copiar el backup al contenedor:
+docker cp empresa3_pg.sql nombre_contenedor:/tmp/empresa3_pg.sql
+
+
+
 
 
 # Conectar con el contenedor: 
