@@ -33,7 +33,19 @@ void testRepositorio() {
     std::vector<Categoria> categorias = repo.selectAll();
     for (const auto& c : categorias) {
         std::cout << c.id << " " << c.nombre << std::endl;
-    }   
+    }  
+
+    std::cout << "---------------" << std::endl;
+
+    // Read:
+    int id = 4;
+    auto cat = repo.read(id);
+    if (cat) {
+        std::cout << cat->id << " " << cat->nombre << " " << std::endl;
+    }
+    else {
+        std::cout << "No se encuentra la categoria " << id << std::endl;
+    }
 }
 
 int main()
