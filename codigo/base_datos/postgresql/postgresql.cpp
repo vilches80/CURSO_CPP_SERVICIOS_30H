@@ -48,6 +48,9 @@ void testRepositorio() {
     else {
         std::cout << "No se encuentra la categoria " << id << std::endl;
     }
+
+    // Delete: 
+    repo.deleteid(9);
 }
 
 int main()
