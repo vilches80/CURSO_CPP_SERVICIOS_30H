@@ -41,8 +41,35 @@ void CategoriaRepositorio::create(const Categoria& categoria)
 {
 }
 
-void CategoriaRepositorio::update(const Categoria& categoria)
+void CategoriaRepositorio::update(const Categoria& cat)
 {
+	const char* query = "UPDATE tbcategorias SET nombre = $1 WHERE id = $2";
+
+	// Array de parametros
+	const char* paramValues[2];
+	paramValues[0] = cat.nombre.c_str();	
+	std::string idStr = std::to_string(cat.id);
+	paramValues[1] = idStr.c_str();
+
+	PGresult* res = PQexecParams(
+		conn,
+		query,
+		2,              // número de parámetros
+		nullptr,        // tipos de parámetros (NULL = inferidos)
+		paramValues,    // valores
+		nullptr,        // longitudes (NULL para texto)
+		nullptr,        // formatos (NULL = texto)
+		0               // resultado en texto (0) o binario (1)
+	);
+
+	if (PQresultStatus(res) != PGRES_COMMAND_OK) {
+		std::string errorMsg = PQerrorMessage(conn);
+		PQclear(res);
+		throw std::runtime_error("Error al actualizar categoria: " + errorMsg);
+	}
+
+	PQclear(res);
+
 }
 
 void CategoriaRepositorio::deleteid(int id)
