@@ -53,9 +53,33 @@ void CategoriaCrow::run()
 		}
 	});
 
-	CROW_ROUTE(app, "/categorias/<int>").methods(crow::HTTPMethod::PUT)([this](const crow::request& req, int id) {
+	CROW_ROUTE(app, "/categorias").methods(crow::HTTPMethod::PUT)([this](const crow::request& req) {
+
+		auto body = crow::json::load(req.body);
+		if (!body) {
+			return crow::response(400, "Json incorrecto");
+		}
 	
-		return crow::response("pendiente");
+		try {
+			// Para convertir directamente a la estructura:
+			json j = json::parse(req.body);
+
+			// Conversion: funcion from_json()
+			Categoria c = j.get<Categoria>();
+
+			int filas = this->repo.update(c);
+			if (filas == 0) {
+				return crow::response(404, "Categoria con el id: " + std::to_string(c.id) + " no existe");
+			}
+			else {
+				return crow::response(204);
+			}
+		} 
+		catch (const std::exception& e) {
+				std::string msg = e.what();
+				return crow::response(500, "Error interno en el servidor: " + msg);
+		}
+
 	});
 
 	CROW_ROUTE(app, "/categorias/<int>").methods(crow::HTTPMethod::Delete)([this](int id) {
