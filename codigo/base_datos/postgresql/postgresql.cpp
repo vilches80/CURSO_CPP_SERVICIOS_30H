@@ -50,7 +50,7 @@ void testRepositorio() {
     }
 
     // Delete: 
-    id = 9;
+    id = 7;
     int cont = repo.deleteid(id);
 
     if (cont) {
