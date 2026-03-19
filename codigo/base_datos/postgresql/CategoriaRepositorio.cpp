@@ -2,7 +2,7 @@
 
 #include "CategoriaRepositorio.h"
 
-CategoriaRepositorio::CategoriaRepositorio(PGconn* conn)
+CategoriaRepositorio::CategoriaRepositorio(PGconn* conn):conn(conn)
 {
 }
 
