@@ -108,7 +108,6 @@ void CrowCRUD::run()
 		return crow::response(200, "Usuario actualizado");
 	});
 
-
 	CROW_ROUTE(app, "/usuarios/<int>").methods(crow::HTTPMethod::Delete)([this](int id) {
 
 		std::lock_guard<std::mutex> lock(this->mtx);
@@ -128,7 +127,7 @@ void CrowCRUD::run()
 	crow::logger::setLogLevel(crow::LogLevel::Info);
 
 	// Puesta en marcha del servidor
-	app.port(8080).multithreaded().run();
+	app.port(8080).concurrency(std::thread::hardware_concurrency()).multithreaded().run();
 }
 
 CrowCRUD::~CrowCRUD()
