@@ -40,7 +40,17 @@ void CategoriaCrow::run()
 
 	CROW_ROUTE(app, "/categorias").methods(crow::HTTPMethod::GET)([this]() {
 		
-		return crow::response("pendiente");
+		try {
+			auto categorias = this->repo.selectAll();			
+			json j = categorias;
+
+			// Convertir el json a string con dump
+			return crow::response(200, j.dump(4));
+		}
+		catch (const std::exception& e) {
+			std::string msg = e.what();
+			return crow::response(500, "Error interno en el servidor: " + msg);
+		}
 	});
 
 	CROW_ROUTE(app, "/categorias/<int>").methods(crow::HTTPMethod::PUT)([this](const crow::request& req, int id) {
