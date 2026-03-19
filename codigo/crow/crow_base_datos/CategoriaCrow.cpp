@@ -1,6 +1,6 @@
 #include "CategoriaCrow.h"
 
-CategoriaCrow::CategoriaCrow(std::string conninfo)
+CategoriaCrow::CategoriaCrow(const CategoriaRepositorio& repo):repo(repo)
 {
 }
 

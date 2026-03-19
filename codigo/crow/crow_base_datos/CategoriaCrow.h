@@ -1,12 +1,16 @@
 #pragma once
 
 #include <string>
+#include "CategoriaRepositorio.h"
 
 class CategoriaCrow
 {
 public:
-	CategoriaCrow(std::string conninfo);
+	CategoriaCrow(const CategoriaRepositorio& repo);
 	void run();
 	~CategoriaCrow();
+
+private:
+	CategoriaRepositorio repo;
 };
 

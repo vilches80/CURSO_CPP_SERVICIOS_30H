@@ -11,8 +11,9 @@
 int main()
 {
 	const char* conninfo = "host=127.0.0.1 port=5433 dbname=empresa3 user=antonio password=antonio";
-	CategoriaRepositorio repo(conninfo.c_str());
-	CategoriaCrow servicio();
+	CategoriaRepositorio repo(conninfo);
+	CategoriaCrow servicio(repo);
 	servicio.run();
+	return 0;
 }
 
