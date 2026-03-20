@@ -12,6 +12,9 @@ int main()
         return "Hola seguro con HTTPS";
     });
 
-    app.port(8080).multithreaded().run();
+    app.ssl_file("..\\certificados\\cert.pem","..\\certificados\\key.pem")
+        .port(443)
+        .multithreaded()
+        .run();
 }
 
