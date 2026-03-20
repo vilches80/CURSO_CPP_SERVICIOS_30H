@@ -10,8 +10,6 @@ docker cp empresa3_pg.sql nombre_contenedor:/tmp/empresa3_pg.sql
 
 
 
-
-
 # Conectar con el contenedor: 
 docker exec -it postgres_dev bash
 
