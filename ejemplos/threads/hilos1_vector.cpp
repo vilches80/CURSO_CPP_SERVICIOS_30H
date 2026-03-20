@@ -14,15 +14,29 @@ class Hilo {
 
 	public:
 		void operator()(){
-			std::cout << "Dentro del hilo: " << std::this_thread::get_id() << " esta ejecutando" << std::endl;
+			for (int i = 0 ; i < 3 ; i++){			
+				std::cout << "hilo: " << std::this_thread::get_id() << " esta ejecutando " << i << std::endl;
+			}
+			std::cout << "Termina el hilo: " << std::this_thread::get_id() << std::endl;
 		}
 };
 
 
-int main(){
+void test1(){
 	std::vector<std::thread> hilos;
 
-	// Creamos 10 hilos y se aÃ±aden al vector:
+	// Creamos 10 hilos y se añaden al vector:
+	for (int i = 0 ; i < 5 ; i++){	
+		hilos.push_back(std::thread( (Hilo()) ));
+		auto &h = hilos.at(i);
+		h.join();
+	}
+}
+
+void test2(){
+	std::vector<std::thread> hilos;
+
+	// Creamos 10 hilos y se añaden al vector:
 	for (int i = 0 ; i < 10 ; i++)
 		hilos.push_back(std::thread( (Hilo()) ));
 
@@ -32,5 +46,11 @@ int main(){
 	for (auto &h : hilos)
 		h.join();
 
+}
 
+
+int main(){
+	test1();
+	//test2();
+	return 0;
 }
